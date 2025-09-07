@@ -12,18 +12,18 @@ pipeline{
         stage('Checkout') {
             steps {
                 git branch: "${params.BRANCH}",
-                url: 'https://github.com/Siddha200340/my-real-1-app.git'
+                url: "https://github.com/Siddha200340/my-real-1-app.git"
             }
         }
         stage('Build') {
             steps {
-                bat 'docker build -t %DOCKER_IMAGE% .'
+                bat "docker build -t %DOCKER_IMAGE% ."
             }
         }
         stage('Run') {
             steps {
-                bat 'docker rm -f ${params.CONTAINER_NAME} || exit 0'
-                bat 'docker run -d -p 5000:${params.PORT} --name ${params.CONTAINER_NAME} %DOCKER_IMAGE%'
+                bat "docker rm -f ${params.CONTAINER_NAME} || exit 0"
+                bat "docker run -d -p ${params.PORT}:5000 --name ${params.CONTAINER_NAME} %DOCKER_IMAGE%"
             }
         }
     }
