@@ -23,7 +23,7 @@ pipeline{
         stage('Run') {
             steps {
                 bat 'docker rm -f ${params.CONTAINER_NAME} || exit 0'
-                bat 'docker run -d -p ${params.PORT}:5000 --name ${params.CONTAINER_NAME} %DOCKER_IMAGE%'
+                bat 'docker run -d -p 5000:${params.PORT} --name ${params.CONTAINER_NAME} %DOCKER_IMAGE%'
             }
         }
     }
